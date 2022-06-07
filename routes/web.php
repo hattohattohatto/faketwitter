@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UsersController;
+
+Route::get('/users', [UsersController::class,'index' ]);
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,3 +28,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// ログイン状態
+Route::group(['middleware' => 'auth'], function() {
+
+    // ユーザ関連
+    Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
+    
+    // フォロー/フォロー解除を追加
+    Route::post('follow/{id}', 'UsersController@follow')->name('follow');
+    Route::delete('unfollow/{id}', 'UsersController@unfollow')->name('unfollow');
+
+    // ツイート関連
+    Route::resource('tweets', 'TweetsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+});
+

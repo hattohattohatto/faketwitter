@@ -10,7 +10,7 @@ class Comment extends Model
     use SoftDeletes;
 
     /**
-     * The attributes that are mass assignable.
+     * ホワイトリストのセット
      *
      * @var array
      */
@@ -18,8 +18,24 @@ class Comment extends Model
         'text'
     ];
 
+    /**
+     * ユーザーのリレーションを定義
+     * 
+     * @return \Illuminate\Http\Response
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+
+    /**
+     * ツイートのIDを取得
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function getComments(int $tweet_id)
+    {
+        return $this->with('user')->where('tweet_id', $tweet_id)->get();
     }
 }

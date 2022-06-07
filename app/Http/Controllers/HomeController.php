@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-#↓新規追加
 use App\Http\Controllers\Controller; 
 
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * 新規コントローラーの認証生成
+     * 
      */
     public function __construct()
     {
@@ -19,7 +17,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * homeのページを表示
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */

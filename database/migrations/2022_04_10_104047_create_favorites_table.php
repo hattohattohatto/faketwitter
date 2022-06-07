@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateFavoritesTable extends Migration
 {
     /**
-     * Run the migrations.
+     * マイグレーションの実行
      *
      * @return void
      */
@@ -42,7 +42,7 @@ class CreateFavoritesTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * マイグレーションのロールバック時の処理
      *
      * @return void
      */
